@@ -1,10 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
 import React, {Component, useState, useEffect} from 'react';
+//import React from 'react'
+import ToDoList from './Components/ToDoList'
 
 function App () {
     const [message, setMessage] = useState("");
+    const todos = [
+        {id: 1, completed:false,title:'TASK 1'},
+        {id: 2, completed:false,title:'TASK 2'},
+        {id: 3, completed:false,title:'TASK 3'}
 
+    ]
     useEffect(() => {
         fetch('/api/user/all')
             .then(response => response.text())
@@ -13,15 +18,11 @@ function App () {
             });
     },[])
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <h1 className="App-title">{message}</h1>
-            </header>
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
-        </div>
+        (<div className='wrapper'>
+            <h1>ToDo</h1>
+            <ToDoList todos ={todos} />
+            
+        </div>)
     )
 }
 
